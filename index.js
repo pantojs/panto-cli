@@ -12,7 +12,20 @@
 'use strict';
 
 const panto = require('../panto/');
+const path = require('path');
+const fs = require('fs');
 
-panto.pick('**/*.{js,jsx}').pipe(panto.read()).end();
+const pantoFile = path.join(process.cwd(), 'pantofile.js');
 
-panto.build().then((...args) => console.log(...args), (err) => console.error(err));
+if (fs.existsSync(pantoFile) && fs.statSync(pantoFile).isFile()) {
+    const pf = require(pantoFile);
+    if (panto.util.isFunction(pf)) {
+        pf(panto);
+    }
+} else {
+    panto.log.warn(`No pantofile.js found`);
+}
+
+panto.build().then(() => {
+    panto.watch();
+}, (err) => console.error(err));

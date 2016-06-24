@@ -11,21 +11,66 @@
  */
 'use strict';
 
-const panto = require('../panto/');
 const path = require('path');
 const fs = require('fs');
 
-const pantoFile = path.join(process.cwd(), 'pantofile.js');
+const findup = require('findup-sync');
+const {
+    warn,
+    error
+} = require('panto-logger');
+const resolve = require('resolve').sync;
+const nopt = require("nopt");
+
+const knownOpts = {
+    'watch': Boolean,
+    'pantofile': String
+};
+const shortHands = {
+    'w': '--watch',
+    'f': '--pantofile'
+};
+
+const argv = nopt(knownOpts, shortHands, process.argv, 2);
+const CWD = argv.pantofile ? path.dirname(argv.pantofile) : process.cwd();
+
+let panto;
+
+let pantoPath;
+
+try {
+    pantoPath = resolve('panto', {
+        basedir: '.'
+    });
+} catch (ex) {
+    pantoPath = findup('src/panto.js');
+
+    if (!pantoPath) {
+        error('Unable to find local panto.');
+        process.exit(-1);
+    }
+}
+
+panto = require(pantoPath);
+
+panto.setOptions({
+    cwd: CWD
+});
+
+const pantoFile = argv.pantofile || path.join(CWD, 'pantofile.js');
 
 if (fs.existsSync(pantoFile) && fs.statSync(pantoFile).isFile()) {
-    const pf = require(pantoFile);
+    let pf = require(pantoFile);
     if (panto.util.isFunction(pf)) {
         pf(panto);
     }
 } else {
-    panto.log.warn(`No pantofile.js found`);
+    warn(`No pantofile.js found`);
 }
 
+// Final build
 panto.build().then(() => {
-    panto.watch();
-}, (err) => console.error(err));
+    if (argv.watch) {
+        panto.watch().catch(error);
+    }
+}, error);

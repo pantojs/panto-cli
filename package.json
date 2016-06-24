@@ -7,7 +7,7 @@
         "panto": "bin/panto"
     },
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "eslint index.js"
     },
     "repository": {
         "type": "git",
@@ -27,5 +27,14 @@
     "bugs": {
         "url": "https://github.com/pantojs/panto-cli/issues"
     },
-    "homepage": "https://github.com/pantojs/panto-cli#readme"
+    "engines": {
+        "node": ">=6.0.0"
+    },
+    "homepage": "https://github.com/pantojs/panto-cli#readme",
+    "dependencies": {
+        "findup-sync": "^0.4.1",
+        "nopt": "^3.0.6",
+        "panto-logger": "^0.1.0",
+        "resolve": "^1.1.7"
+    }
 }

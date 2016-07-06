@@ -6,8 +6,8 @@
  * 2016-06-21[17:47:56]:revised
  *
  * @author yanni4night@gmail.com
- * @version 1.0.0
- * @since 1.0.0
+ * @version 0.0.3
+ * @since 0.0.1
  */
 'use strict';
 
@@ -15,10 +15,7 @@ const path = require('path');
 const fs = require('fs');
 
 const findup = require('findup-sync');
-const {
-    warn,
-    error
-} = require('panto-logger');
+const {warn, error} = require('panto-logger');
 const resolve = require('resolve').sync;
 const nopt = require("nopt");
 
@@ -68,9 +65,13 @@ if (fs.existsSync(pantoFile) && fs.statSync(pantoFile).isFile()) {
     warn(`No pantofile.js found`);
 }
 
+panto.on('error', err => {
+    error(err);
+});
+
 // Final build
 panto.build().then(() => {
     if (argv.watch) {
-        panto.watch().catch(error);
+        panto.watch();
     }
-}, error);
+});

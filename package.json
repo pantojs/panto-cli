@@ -1,40 +1,41 @@
 {
-    "name": "panto-cli",
-    "version": "0.0.2",
-    "description": "Command tool for panto",
-    "main": "index.js",
-    "bin": {
-        "panto": "bin/panto"
-    },
-    "scripts": {
-        "test": "eslint index.js"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/pantojs/panto-cli.git"
-    },
-    "keywords": [
-        "command",
-        "panto",
-        "task",
-        "build"
-    ],
-    "engines": {
-        "node": ">=6.0.0"
-    },
-    "author": "yanni4night@gmail.com",
-    "license": "Apache-2.0",
-    "bugs": {
-        "url": "https://github.com/pantojs/panto-cli/issues"
-    },
-    "engines": {
-        "node": ">=6.0.0"
-    },
-    "homepage": "https://github.com/pantojs/panto-cli#readme",
-    "dependencies": {
-        "findup-sync": "^0.4.1",
-        "nopt": "^3.0.6",
-        "panto-logger": "^0.1.0",
-        "resolve": "^1.1.7"
-    }
+  "name": "panto-cli",
+  "version": "0.0.3",
+  "description": "Command tool for panto",
+  "main": "index.js",
+  "bin": {
+    "panto": "bin/panto"
+  },
+  "scripts": {
+    "test": "eslint index.js"
+  },
+  "pre-commit": "test",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pantojs/panto-cli.git"
+  },
+  "keywords": [
+    "command",
+    "panto",
+    "task",
+    "build"
+  ],
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "author": "yanni4night@gmail.com",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/pantojs/panto-cli/issues"
+  },
+  "homepage": "https://github.com/pantojs/panto-cli#readme",
+  "dependencies": {
+    "findup-sync": "^0.4.1",
+    "nopt": "^3.0.6",
+    "panto-logger": "^0.2.1",
+    "resolve": "^1.1.7"
+  },
+  "devDependencies": {
+    "pre-commit": "^1.1.3"
+  }
 }

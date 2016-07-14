@@ -3,9 +3,11 @@
 
 Command tool for panto
 
->$npm install -g panto-cli
->$cd your-project
->$panto --watch --pantofile=./pantofile.js
+```
+$npm install -g panto-cli
+$cd your-project
+$panto --watch --pantofile=./pantofile.js
+```
 
 [npm-url]: https://npmjs.org/package/panto-cli
 [downloads-image]: http://img.shields.io/npm/dm/panto-cli.svg

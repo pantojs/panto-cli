@@ -3,7 +3,7 @@
 
 Command tool for panto
 
-```
+```sh
 $npm install -g panto-cli
 $cd your-project
 $panto --watch --pantofile=./pantofile.js

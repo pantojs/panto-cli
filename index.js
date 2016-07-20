@@ -11,6 +11,8 @@
  */
 'use strict';
 
+process.env.PANTO_LOG_LEVEL = 'info';
+
 const path = require('path');
 const fs = require('fs');
 

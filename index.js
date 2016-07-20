@@ -37,10 +37,10 @@ const CWD = argv.pantofile ? path.dirname(argv.pantofile) : process.cwd();
 
 if (argv.loglevel) {
     process.env.PANTO_LOG_LEVEL = argv.loglevel;
-    const logger = require('panto-logger');
-    const {warn, error} = logger;
-    logger.setLevel(argv.loglevel);
 }
+
+const logger = require('panto-logger');
+const {warn, error} = logger;
 
 let panto;
 

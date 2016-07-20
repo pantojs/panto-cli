@@ -4,34 +4,43 @@
  *
  * changelog
  * 2016-06-21[17:47:56]:revised
+ * 2016-07-20[23:52:10]:support loglevel
  *
  * @author yanni4night@gmail.com
- * @version 0.0.3
+ * @version 0.0.4
  * @since 0.0.1
  */
 'use strict';
-
-process.env.PANTO_LOG_LEVEL = 'info';
 
 const path = require('path');
 const fs = require('fs');
 
 const findup = require('findup-sync');
-const {warn, error} = require('panto-logger');
+
 const resolve = require('resolve').sync;
 const nopt = require("nopt");
 
 const knownOpts = {
     'watch': Boolean,
-    'pantofile': String
+    'pantofile': String,
+    'loglevel': String
 };
 const shortHands = {
     'w': '--watch',
-    'f': '--pantofile'
+    'f': '--pantofile',
+    'l': '--loglevel'
 };
 
 const argv = nopt(knownOpts, shortHands, process.argv, 2);
 const CWD = argv.pantofile ? path.dirname(argv.pantofile) : process.cwd();
+
+
+if (argv.loglevel) {
+    process.env.PANTO_LOG_LEVEL = argv.loglevel;
+    const logger = require('panto-logger');
+    const {warn, error} = logger;
+    logger.setLevel(argv.loglevel);
+}
 
 let panto;
 

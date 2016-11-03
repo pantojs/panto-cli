@@ -5,9 +5,10 @@
  * changelog
  * 2016-06-21[17:47:56]:revised
  * 2016-07-20[23:52:10]:support loglevel
+ * 2016-11-03[12:35:21]:async/await
  *
  * @author yanni4night@gmail.com
- * @version 0.0.4
+ * @version 0.1.0
  * @since 0.0.1
  */
 'use strict';
@@ -40,7 +41,10 @@ if (argv.loglevel) {
 }
 
 const logger = require('panto-logger');
-const {warn, error} = logger;
+const {
+    warn,
+    error
+} = logger;
 
 let panto;
 
@@ -69,7 +73,7 @@ const pantoFile = argv.pantofile || path.join(CWD, 'pantofile.js');
 
 if (fs.existsSync(pantoFile) && fs.statSync(pantoFile).isFile()) {
     let pf = require(pantoFile);
-    if (panto.util.isFunction(pf)) {
+    if (panto._.isFunction(pf)) {
         pf(panto);
     }
 } else {
@@ -81,8 +85,13 @@ panto.on('error', err => {
 });
 
 // Final build
-panto.build().then(() => {
-    if (argv.watch) {
-        panto.watch();
+(async() => {
+    try {
+        await panto.build();
+        if (argv.watch) {
+            panto.watch();
+        }
+    } catch (e) {
+        error(e);
     }
-});
+})();

@@ -1,10 +1,10 @@
 {
   "name": "panto-cli",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "description": "Command tool for panto",
   "main": "index.js",
   "bin": {
-    "panto": "bin/panto"
+    "panto": "node --harmony bin/panto"
   },
   "scripts": {
     "test": "eslint index.js"
@@ -21,7 +21,7 @@
     "build"
   ],
   "engines": {
-    "node": ">=6.0.0"
+    "node": ">=7.0.0"
   },
   "author": "yanni4night@gmail.com",
   "license": "Apache-2.0",
@@ -30,9 +30,9 @@
   },
   "homepage": "https://github.com/pantojs/panto-cli#readme",
   "dependencies": {
-    "findup-sync": "^0.4.1",
+    "findup-sync": "^0.4.3",
     "nopt": "^3.0.6",
-    "panto-logger": "^0.2.1",
+    "panto-logger": "^0.2.3",
     "resolve": "^1.1.7"
   },
   "devDependencies": {

@@ -3,5 +3,4 @@ before_install:
   - npm install -g eslint
 sudo: false
 node_js:
-  - 6
-  - stable
+  - node

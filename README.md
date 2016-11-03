@@ -16,5 +16,5 @@ $panto --watch --pantofile=./pantofile.js
 [travis-image]: http://img.shields.io/travis/pantojs/panto-cli.svg
 [david-dm-url]:https://david-dm.org/pantojs/panto-cli
 [david-dm-image]:https://david-dm.org/pantojs/panto-cli.svg
-[david-dm-dev-url]:https://david-dm.org/pantojs/panto-cli#info=devDependencies
+[david-dm-dev-url]:https://david-dm.org/pantojs/panto-cli#type=dev
 [david-dm-dev-image]:https://david-dm.org/pantojs/panto-cli/dev-status.svg
